@@ -27,17 +27,17 @@ class ProductsDatasourceImpl extends ProductsDataSource {
       final String url = (productId == null) ? '/post' : '/products/$productId';
       productLike.remove('id');
 
-      // final response = await dio.request(
-      //   url,
-      //   data: productLike,
-      //   options: Options(
-      //     method: method,
-      //   ),
-      // );
+      final response = await dio.request(
+        url,
+        data: productLike,
+        options: Options(
+          method: method,
+        ),
+      );
 
-      final response = (method == 'PACTH')
-          ? await dio.patch(url, data: productLike)
-          : await dio.post(url, data: productLike);
+      // final response = (method == 'PACTH')
+      //     ? await dio.patch(url, data: productLike)
+      //     : await dio.post(url, data: productLike);
 
       final product = ProductMappers.jsonToEntity(response.data);
       return product;
